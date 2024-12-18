@@ -13,6 +13,7 @@
             color: #fff;
             padding: 50px;
             margin: 0;
+            overflow-x: hidden;
         }
 
         /* Home Icon */
@@ -34,11 +35,10 @@
         .header-blog {
             text-align: center;
             margin-bottom: 50px;
-            opacity: 0; /* Hidden initially for animation */
-            animation: fadeInHeader 1s forwards; /* Animation to fade in the header */
+            opacity: 0;
+            animation: fadeInHeader 1s forwards;
         }
 
-        /* Animation for header text */
         @keyframes fadeInHeader {
             0% {
                 opacity: 0;
@@ -52,18 +52,11 @@
 
         .header-blog h1 {
             font-size: 3em;
-            color: #ff6f61; /* Vibrant color */
+            color: #ff6f61;
             text-transform: uppercase;
             animation: textGlow 2s ease-in-out infinite alternate;
         }
 
-        .header-blog p {
-            font-size: 1.2em;
-            color: #bbb;
-            margin-top: 10px;
-        }
-
-        /* Glow Animation for Header */
         @keyframes textGlow {
             from {
                 text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61, 0 0 30px #ffcc00;
@@ -71,6 +64,12 @@
             to {
                 text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ff6f61;
             }
+        }
+
+        .header-blog p {
+            font-size: 1.2em;
+            color: #bbb;
+            margin-top: 10px;
         }
 
         /* Blog Posts */
@@ -83,7 +82,7 @@
 
         .blog-post {
             width: 300px;
-            background-color: #2c2f36; /* Dark background for the post */
+            background-color: #2c2f36;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
@@ -146,14 +145,63 @@
             animation: fadeIn 1s forwards;
         }
 
-        /* Scroll container */
-        .scroll-container {
-            max-height: 80vh;
-            overflow-y: scroll;
-            margin-top: 40px;
-            padding-right: 20px;
-            scrollbar-width: thin;
-            -webkit-overflow-scrolling: touch;
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #2c2f36;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 400px;
+            animation: modalFadeIn 0.5s forwards;
+        }
+
+        @keyframes modalFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal h2 {
+            color: #ff6f61;
+            font-size: 2em;
+        }
+
+        .modal p {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .close-btn {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .close-btn:hover {
+            background-color: #e74c3c;
         }
     </style>
 </head>
@@ -169,38 +217,51 @@
 </header>
 
 <!-- Blog Posts -->
-<div class="scroll-container">
-    <div class="blog-posts">
-        <div class="blog-post animated-post">
-            <img src="images/local-products-history.jpg" alt="Historia de productos locales">
-            <h3>La Historia de los Productos Locales</h3>
-            <p>Descubre la rica tradición y cultura detrás de los productos que ofrecemos en Spazium, traídos directamente de Euskadi e Iparralde.</p>
-            <a href="article-history.html" class="read-more-button">Leer Más</a>
-        </div>
+<div class="blog-posts">
+    <div class="blog-post animated-post">
+        <img src="images/local-products-history.jpg" alt="Historia de productos locales">
+        <h3>La Historia de los Productos Locales</h3>
+        <p>Descubre la rica tradición y cultura detrás de los productos que ofrecemos en Spazium, traídos directamente de Euskadi e Iparralde.</p>
+        <button class="read-more-button" onclick="showModal()">Leer Más</button>
+    </div>
 
-        <div class="blog-post animated-post">
-            <img src="images/leisure-tips.jpg" alt="Consejos de Ocio">
-            <h3>Consejos para Disfrutar del Ocio</h3>
-            <p>Aquí te damos los mejores consejos sobre cómo aprovechar al máximo las actividades de ocio en Spazium, desde el bowling hasta los food trucks.</p>
-            <a href="article-leisure-tips.html" class="read-more-button">Leer Más</a>
-        </div>
+    <div class="blog-post animated-post">
+        <img src="images/leisure-tips.jpg" alt="Consejos de Ocio">
+        <h3>Consejos para Disfrutar del Ocio</h3>
+        <p>Aquí te damos los mejores consejos sobre cómo aprovechar al máximo las actividades de ocio en Spazium, desde el bowling hasta los food trucks.</p>
+        <button class="read-more-button" onclick="showModal()">Leer Más</button>
+    </div>
 
-        <div class="blog-post animated-post">
-            <img src="images/local-product-collaboration.jpg" alt="Colaboración con productores locales">
-            <h3>Colaboración con Productores Locales</h3>
-            <p>Conoce los productores locales de Euskadi e Iparralde que hacen posible nuestra oferta gastronómica única y auténtica.</p>
-            <a href="article-collaboration.html" class="read-more-button">Leer Más</a>
-        </div>
+    <div class="blog-post animated-post">
+        <img src="images/local-product-collaboration.jpg" alt="Colaboración con productores locales">
+        <h3>Colaboración con Productores Locales</h3>
+        <p>Conoce los productores locales de Euskadi e Iparralde que hacen posible nuestra oferta gastronómica única y auténtica.</p>
+        <button class="read-more-button" onclick="showModal()">Leer Más</button>
     </div>
 </div>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 Spazium | Todos los derechos reservados</p>
-</footer>
+<!-- Modal -->
+<div id="work-in-progress-modal" class="modal">
+    <div class="modal-content">
+        <h2>¡Trabajo en Progreso!</h2>
+        <p>La página que deseas ver está en desarrollo. ¡Pronto estará disponible!</p>
+        <button class="close-btn" onclick="closeModal()">Cerrar</button>
+    </div>
+</div>
 
-<!-- JavaScript for scroll reveal -->
+<!-- JavaScript -->
 <script>
+    // Show the modal
+    function showModal() {
+        document.getElementById('work-in-progress-modal').style.display = 'flex';
+    }
+
+    // Close the modal
+    function closeModal() {
+        document.getElementById('work-in-progress-modal').style.display = 'none';
+    }
+
+    // Animate blog posts when they appear on the screen
     document.addEventListener('DOMContentLoaded', () => {
         const blogPosts = document.querySelectorAll('.blog-post');
         window.addEventListener('scroll', () => {
@@ -217,3 +278,4 @@
 
 </body>
 </html>
+

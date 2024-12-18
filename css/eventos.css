@@ -10,6 +10,9 @@ body {
     color: #fff;
     background-color: #1e1e2e;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Home Icon (Top-left corner) */
@@ -17,8 +20,8 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    font-size: 4rem; /* Bigger font size for the home icon */
-    color: #fff; /* White color */
+    font-size: 3rem;
+    color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -29,7 +32,7 @@ body {
 
 /* Header Section */
 .header {
-    background-color: #333;
+    background-color: #1e1e2e;
     color: #fff;
     padding: 80px 20px 40px 20px;
     text-align: center;
@@ -53,6 +56,9 @@ body {
     padding: 20px;
     width: 90%;
     max-width: 1200px; /* Wider calendar */
+    z-index: 10; /* Make sure the calendar is above the footer */
+    position: relative;
+    padding-bottom: 80px; /* Add space for the footer */
 }
 
 #calendar {
@@ -85,10 +91,15 @@ body {
 
 /* Footer Section */
 footer {
-    margin-top: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 20px;
     background-color: #111;
     text-align: center;
+    color: #fff;
+    z-index: -2; /* Position footer behind the content */
 }
 
 /* Animations */
@@ -132,5 +143,32 @@ footer {
 
     #calendar {
         height: 400px;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}
+
+/* Improved styling for small screens */
+@media (max-width: 480px) {
+    .home-icon {
+        font-size: 3rem; /* Adjust home icon size for smaller screens */
+    }
+
+    .hero-title {
+        font-size: 2rem; /* Adjust hero title size for small screens */
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem; /* Adjust subtitle size */
+    }
+
+    .calendar-container {
+        padding: 15px;
+    }
+
+    #calendar {
+        height: 350px;
     }
 }

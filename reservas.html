@@ -133,16 +133,16 @@
         /* Popup form */
         .popup-form {
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
             background-color: #2c2f36;
             padding: 30px;
             border-radius: 10px;
             width: 400px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s forwards;
+            animation: fadeIn 1s forwards, slideDown 0.5s forwards;
         }
 
         .popup-form h2 {
@@ -190,6 +190,18 @@
             display: none;
             animation: fadeIn 2s forwards;
         }
+
+        /* Animation for modal sliding down */
+        @keyframes slideDown {
+            0% {
+                top: -50px;
+                opacity: 0;
+            }
+            100% {
+                top: 80px;
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -209,13 +221,13 @@
         <img src="images/bolos.jpg" alt="Reservar Bolos">
         <h3>Reserva de Partidas de Bolos</h3>
         <p>Reserva tu pista de bolos con anticipación y disfruta de un rato de diversión en Spazium.</p>
-        <button class="book-button" onclick="openPopup('bolos')">Reservar Ahora</button>
+        <button class="book-button" onclick="openPopup(event, 'bolos')">Reservar Ahora</button>
     </div>
     <div class="reservation-card animated-card">
         <img src="images/food-trucks.jpg" alt="Reservar Mesa Food Trucks">
         <h3>Reserva de Mesa en Food Trucks</h3>
         <p>Asegura tu lugar para disfrutar de nuestra variedad gastronómica. ¡Haz tu reserva ya!</p>
-        <button class="book-button" onclick="openPopup('foodtrucks')">Reservar Ahora</button>
+        <button class="book-button" onclick="openPopup(event, 'foodtrucks')">Reservar Ahora</button>
     </div>
 </div>
 
@@ -253,15 +265,10 @@
     ¡Reserva exitosa! Te esperamos en Spazium.
 </div>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 Spazium | Todos los derechos reservados</p>
-</footer>
-
 <!-- JavaScript for Popup functionality -->
 <script>
-    // Function to open the popup form
-    function openPopup(type) {
+    // Function to open the popup form and position it under the clicked button
+    function openPopup(event, type) {
         const popup = document.getElementById('popup-form');
         const successMessage = document.getElementById('success-message');
         const formTitle = document.getElementById('popup-title');
@@ -273,6 +280,14 @@
         } else {
             formTitle.innerText = 'Reserva una Mesa en Food Trucks';
         }
+
+        // Get position of the clicked button
+        const button = event.target;
+        const rect = button.getBoundingClientRect();
+
+        // Position the popup under the clicked button
+        popup.style.left = rect.left + 'px';
+        popup.style.top = rect.bottom + 10 + 'px'; // Small offset below the button
 
         popup.style.display = 'block'; // Show the popup form
         successMessage.style.display = 'none'; // Hide success message

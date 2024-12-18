@@ -1,0 +1,168 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    color: #fff;
+    text-align: center;
+    background-color: #1e1e2e;
+    overflow-x: hidden;
+}
+
+.hero-title {
+    font-size: 4rem;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards 1.5s;
+    margin-top: 10px;
+}
+
+header {
+    padding: 80px 20px 40px 20px;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #111;
+    text-align: center;
+}
+
+/* Home Icon (Big Icon) */
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+    color: #ff6f61; /* Change color on hover */
+}
+
+/* Contact Information Section */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 50px 20px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.contact-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.contact-item h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ff6f61;
+    opacity: 0;
+    animation: slideIn 0.6s forwards;
+}
+
+.contact-item p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Social Media Links */
+.social-media a {
+    display: block;
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: #ff6f61;
+}
+
+.social-media i {
+    margin-right: 10px;
+}
+
+/* Google Map Section */
+.map iframe {
+    border: 0;
+    width: 100%;
+    height: 350px;
+}
+
+/* Animations */
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61, 0 0 30px #ffcc00;
+    }
+    to {
+        text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ff6f61;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-item {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .map iframe {
+        height: 300px;
+    }
+}
