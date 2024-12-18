@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades - Spazium</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- General styles -->
+    <link rel="stylesheet" href="css/actividades.css"> <!-- Activities-specific styles -->
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<!-- Header and Navigation Section -->
+<div class="header">
+    <h1 class="hero-title">Actividades en Spazium</h1>
+    <div class="nav-buttons">
+        <a href="index.html" class="nav-button">Inicio</a>
+        <a href="#" class="nav-button">Eventos</a>
+        <a href="#" class="nav-button">Productos Locales</a>
+        <a href="#" class="nav-button">Reservas</a>
+        <a href="#" class="nav-button">Blog</a>
+    </div>
+</div>
+
+<!-- Activities Section -->
+<div id="actividadesSection" class="activities-section">
+    <div class="activity-card" data-tilt>
+        <img src="images/bowling.jpg" alt="Bowling" class="activity-image">
+        <h2>🎳 Bowling</h2>
+        <p>¡Disfruta de una partida épica con tus amigos!</p>
+    </div>
+    <div class="activity-card" data-tilt>
+        <img src="images/billar.jpg" alt="Billar" class="activity-image">
+        <h2>🎱 Billar</h2>
+        <p>Relájate y desafía a tus amigos en una partida de billar.</p>
+    </div>
+    <div class="activity-card" data-tilt>
+        <img src="images/dardos.jpg" alt="Dardos" class="activity-image">
+        <h2>🎯 Dardos</h2>
+        <p>Mejora tu puntería y compite en un divertido juego de dardos.</p>
+    </div>
+    <div class="activity-card" data-tilt>
+        <img src="images/arcade.jpg" alt="Máquinas Retros" class="activity-image">
+        <h2>🎮 Máquinas Retros</h2>
+        <p>Vuelve a la nostalgia con nuestros juegos retro clásicos.</p>
+    </div>
+    <div class="activity-card" data-tilt>
+        <img src="images/proyeccion.jpg" alt="Proyección de Eventos" class="activity-image">
+        <h2>🎥 Proyección de Eventos</h2>
+        <p>Disfruta de eventos en vivo y cine en pantalla grande.</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script src="js/actividades.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Spazium</title>
+    <!-- Add external CSS link -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            padding: 50px;
+        }
+
+        .header-reservas {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-reservas h1 {
+            font-size: 3em;
+            color: #34bfa3;
+            text-transform: uppercase;
+        }
+
+        .header-reservas p {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .reservas-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+
+        .reservation-card {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.5s ease, opacity 1s ease;
+            opacity: 0;
+        }
+
+        .reservation-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .reservation-card h3 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 15px;
+        }
+
+        .reservation-card p {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .book-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #34bfa3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .book-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animation for fade-in effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated-card {
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Section for form animation */
+        .reservation-form {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #34bfa3;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #2a9e7e;
+        }
+
+        /* Smooth scroll container for sections */
+        .scroll-container {
+            max-height: 70vh;
+            overflow-y: scroll;
+            margin-top: 40px;
+            padding-right: 20px;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header-reservas">
+    <h1>Reservas</h1>
+    <p>Reserva tu partida de bolos o mesa en los Food Trucks</p>
+</header>
+
+<!-- Main Content -->
+<div class="reservas-container">
+    <div class="reservation-card animated-card">
+        <img src="images/bolos.jpg" alt="Reservar Bolos">
+        <h3>Reserva de Partidas de Bolos</h3>
+        <p>Reserva tu pista de bolos con anticipación y disfruta de un rato de diversión en Spazium.</p>
+        <a href="#booking-form-bolos" class="book-button">Reservar Ahora</a>
+    </div>
+    <div class="reservation-card animated-card">
+        <img src="images/food-trucks.jpg" alt="Reservar Mesa Food Trucks">
+        <h3>Reserva de Mesa en Food Trucks</h3>
+        <p>Asegura tu lugar para disfrutar de nuestra variedad gastronómica. ¡Haz tu reserva ya!</p>
+        <a href="#booking-form-foodtrucks" class="book-button">Reservar Ahora</a>
+    </div>
+</div>
+
+<!-- Reservation Forms -->
+<div class="scroll-container">
+    <!-- Bowling Reservation Form -->
+    <div id="booking-form-bolos" class="reservation-form">
+        <h2>Reserva tu Partida de Bolos</h2>
+        <form>
+            <div class="form-group">
+                <label for="name-bolos">Tu Nombre</label>
+                <input type="text" id="name-bolos" name="name-bolos" required>
+            </div>
+            <div class="form-group">
+                <label for="time-bolos">Fecha y Hora</label>
+                <input type="datetime-local" id="time-bolos" name="time-bolos" required>
+            </div>
+            <div class="form-group">
+                <label for="people-bolos">Número de Personas</label>
+                <select id="people-bolos" name="people-bolos" required>
+                    <option value="1">1 Persona</option>
+                    <option value="2">2 Personas</option>
+                    <option value="3">3 Personas</option>
+                    <option value="4">4 Personas</option>
+                    <option value="5">5 Personas</option>
+                </select>
+            </div>
+            <input type="submit" value="Confirmar Reserva">
+        </form>
+    </div>
+
+    <!-- Food Truck Reservation Form -->
+    <div id="booking-form-foodtrucks" class="reservation-form">
+        <h2>Reserva una Mesa en Food Trucks</h2>
+        <form>
+            <div class="form-group">
+                <label for="name-foodtrucks">Tu Nombre</label>
+                <input type="text" id="name-foodtrucks" name="name-foodtrucks" required>
+            </div>
+            <div class="form-group">
+                <label for="time-foodtrucks">Fecha y Hora</label>
+                <input type="datetime-local" id="time-foodtrucks" name="time-foodtrucks" required>
+            </div>
+            <div class="form-group">
+                <label for="people-foodtrucks">Número de Personas</label>
+                <select id="people-foodtrucks" name="people-foodtrucks" required>
+                    <option value="1">1 Persona</option>
+                    <option value="2">2 Personas</option>
+                    <option value="3">3 Personas</option>
+                    <option value="4">4 Personas</option>
+                    <option value="5">5 Personas</option>
+                </select>
+            </div>
+            <input type="submit" value="Confirmar Reserva">
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Spazium | Todos los derechos reservados</p>
+</footer>
+
+<!-- JavaScript for smooth scroll reveal -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const reservationCards = document.querySelectorAll('.reservation-card');
+        window.addEventListener('scroll', () => {
+            reservationCards.forEach((card, index) => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight;
+                if (cardPosition < screenPosition) {
+                    card.classList.add('animated-card');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
