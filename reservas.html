@@ -4,16 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas - Spazium</title>
-    <!-- Add external CSS link -->
     <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
+            background-color: #1e1e2e; /* Same dark background */
+            color: #fff;
             padding: 50px;
+            margin: 0;
+            overflow-x: hidden;
         }
 
+        /* Home Icon */
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .home-icon:hover {
+            color: #ff6f61;
+        }
+
+        /* Header */
         .header-reservas {
             text-align: center;
             margin-bottom: 50px;
@@ -21,14 +38,25 @@
 
         .header-reservas h1 {
             font-size: 3em;
-            color: #34bfa3;
+            color: #ff6f61;
             text-transform: uppercase;
+            animation: textGlow 2s ease-in-out infinite alternate;
         }
 
         .header-reservas p {
             font-size: 1.2em;
-            color: #555;
+            color: #bbb;
             margin-top: 10px;
+        }
+
+        /* Glow Animation for Header Text */
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61, 0 0 30px #ffcc00;
+            }
+            to {
+                text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ff6f61;
+            }
         }
 
         .reservas-container {
@@ -42,11 +70,12 @@
             width: 300px;
             margin: 20px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #2c2f36;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             transition: transform 0.5s ease, opacity 1s ease;
             opacity: 0;
+            text-align: center;
         }
 
         .reservation-card img {
@@ -57,14 +86,13 @@
         }
 
         .reservation-card h3 {
-            text-align: center;
             font-size: 1.5em;
             margin-top: 15px;
         }
 
         .reservation-card p {
-            text-align: center;
             margin: 10px 0;
+            font-size: 1.1em;
         }
 
         .book-button {
@@ -83,6 +111,7 @@
 
         .book-button:hover {
             transform: scale(1.1);
+            background-color: #ff6f61;
         }
 
         /* Animation for fade-in effect */
@@ -101,59 +130,72 @@
             animation: fadeIn 1s forwards;
         }
 
-        /* Section for form animation */
-        .reservation-form {
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        /* Popup form */
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #2c2f36;
+            padding: 30px;
             border-radius: 10px;
-            opacity: 0;
+            width: 400px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1s forwards;
         }
 
-        .form-group {
+        .popup-form h2 {
+            font-size: 2em;
+            color: #ff6f61;
+        }
+
+        .popup-form .form-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .form-group input,
-        .form-group select {
+        .popup-form .form-group input,
+        .popup-form .form-group select {
             width: 100%;
             padding: 10px;
-            font-size: 1em;
+            font-size: 1.1em;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        .form-group input[type="submit"] {
+        .popup-form .form-group input[type="submit"] {
             background-color: #34bfa3;
             color: #fff;
             cursor: pointer;
         }
 
-        .form-group input[type="submit"]:hover {
+        .popup-form .form-group input[type="submit"]:hover {
             background-color: #2a9e7e;
         }
 
-        /* Smooth scroll container for sections */
-        .scroll-container {
-            max-height: 70vh;
-            overflow-y: scroll;
-            margin-top: 40px;
-            padding-right: 20px;
-            scrollbar-width: thin;
-            -webkit-overflow-scrolling: touch;
+        .popup-form .form-group .cancel-btn {
+            background-color: #ff6f61;
+            cursor: pointer;
+        }
+
+        .popup-form .form-group .cancel-btn:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Reservation Success Message */
+        .success-message {
+            text-align: center;
+            color: #fff;
+            font-size: 1.5em;
+            display: none;
+            animation: fadeIn 2s forwards;
         }
     </style>
 </head>
 <body>
+
+<!-- Home Icon -->
+<a href="index.html" class="home-icon">🏠</a>
 
 <!-- Header -->
 <header class="header-reservas">
@@ -167,69 +209,48 @@
         <img src="images/bolos.jpg" alt="Reservar Bolos">
         <h3>Reserva de Partidas de Bolos</h3>
         <p>Reserva tu pista de bolos con anticipación y disfruta de un rato de diversión en Spazium.</p>
-        <a href="#booking-form-bolos" class="book-button">Reservar Ahora</a>
+        <button class="book-button" onclick="openPopup('bolos')">Reservar Ahora</button>
     </div>
     <div class="reservation-card animated-card">
         <img src="images/food-trucks.jpg" alt="Reservar Mesa Food Trucks">
         <h3>Reserva de Mesa en Food Trucks</h3>
         <p>Asegura tu lugar para disfrutar de nuestra variedad gastronómica. ¡Haz tu reserva ya!</p>
-        <a href="#booking-form-foodtrucks" class="book-button">Reservar Ahora</a>
+        <button class="book-button" onclick="openPopup('foodtrucks')">Reservar Ahora</button>
     </div>
 </div>
 
-<!-- Reservation Forms -->
-<div class="scroll-container">
-    <!-- Bowling Reservation Form -->
-    <div id="booking-form-bolos" class="reservation-form">
-        <h2>Reserva tu Partida de Bolos</h2>
-        <form>
-            <div class="form-group">
-                <label for="name-bolos">Tu Nombre</label>
-                <input type="text" id="name-bolos" name="name-bolos" required>
-            </div>
-            <div class="form-group">
-                <label for="time-bolos">Fecha y Hora</label>
-                <input type="datetime-local" id="time-bolos" name="time-bolos" required>
-            </div>
-            <div class="form-group">
-                <label for="people-bolos">Número de Personas</label>
-                <select id="people-bolos" name="people-bolos" required>
-                    <option value="1">1 Persona</option>
-                    <option value="2">2 Personas</option>
-                    <option value="3">3 Personas</option>
-                    <option value="4">4 Personas</option>
-                    <option value="5">5 Personas</option>
-                </select>
-            </div>
+<!-- Popup for Reservations -->
+<div id="popup-form" class="popup-form">
+    <h2 id="popup-title">Reserva tu Partida de Bolos</h2>
+    <form id="popup-form-content">
+        <div class="form-group">
+            <label for="name">Tu Nombre</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="time">Fecha y Hora</label>
+            <input type="datetime-local" id="time" name="time" required>
+        </div>
+        <div class="form-group">
+            <label for="people">Número de Personas</label>
+            <select id="people" name="people" required>
+                <option value="1">1 Persona</option>
+                <option value="2">2 Personas</option>
+                <option value="3">3 Personas</option>
+                <option value="4">4 Personas</option>
+                <option value="5">5 Personas</option>
+            </select>
+        </div>
+        <div class="form-group">
             <input type="submit" value="Confirmar Reserva">
-        </form>
-    </div>
+            <button type="button" class="cancel-btn" onclick="closePopup()">Cancelar</button>
+        </div>
+    </form>
+</div>
 
-    <!-- Food Truck Reservation Form -->
-    <div id="booking-form-foodtrucks" class="reservation-form">
-        <h2>Reserva una Mesa en Food Trucks</h2>
-        <form>
-            <div class="form-group">
-                <label for="name-foodtrucks">Tu Nombre</label>
-                <input type="text" id="name-foodtrucks" name="name-foodtrucks" required>
-            </div>
-            <div class="form-group">
-                <label for="time-foodtrucks">Fecha y Hora</label>
-                <input type="datetime-local" id="time-foodtrucks" name="time-foodtrucks" required>
-            </div>
-            <div class="form-group">
-                <label for="people-foodtrucks">Número de Personas</label>
-                <select id="people-foodtrucks" name="people-foodtrucks" required>
-                    <option value="1">1 Persona</option>
-                    <option value="2">2 Personas</option>
-                    <option value="3">3 Personas</option>
-                    <option value="4">4 Personas</option>
-                    <option value="5">5 Personas</option>
-                </select>
-            </div>
-            <input type="submit" value="Confirmar Reserva">
-        </form>
-    </div>
+<!-- Reservation Success Message -->
+<div id="success-message" class="success-message">
+    ¡Reserva exitosa! Te esperamos en Spazium.
 </div>
 
 <!-- Footer -->
@@ -237,19 +258,41 @@
     <p>&copy; 2024 Spazium | Todos los derechos reservados</p>
 </footer>
 
-<!-- JavaScript for smooth scroll reveal -->
+<!-- JavaScript for Popup functionality -->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const reservationCards = document.querySelectorAll('.reservation-card');
-        window.addEventListener('scroll', () => {
-            reservationCards.forEach((card, index) => {
-                const cardPosition = card.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight;
-                if (cardPosition < screenPosition) {
-                    card.classList.add('animated-card');
-                }
-            });
-        });
+    // Function to open the popup form
+    function openPopup(type) {
+        const popup = document.getElementById('popup-form');
+        const successMessage = document.getElementById('success-message');
+        const formTitle = document.getElementById('popup-title');
+        const formContent = document.getElementById('popup-form-content');
+
+        // Adjust form title based on type
+        if (type === 'bolos') {
+            formTitle.innerText = 'Reserva tu Partida de Bolos';
+        } else {
+            formTitle.innerText = 'Reserva una Mesa en Food Trucks';
+        }
+
+        popup.style.display = 'block'; // Show the popup form
+        successMessage.style.display = 'none'; // Hide success message
+    }
+
+    // Function to close the popup form
+    function closePopup() {
+        const popup = document.getElementById('popup-form');
+        popup.style.display = 'none'; // Close the popup
+    }
+
+    // Function to handle form submission
+    document.getElementById('popup-form-content').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const popup = document.getElementById('popup-form');
+        const successMessage = document.getElementById('success-message');
+        
+        popup.style.display = 'none'; // Close the popup form
+        successMessage.style.display = 'block'; // Show success message
     });
 </script>
 

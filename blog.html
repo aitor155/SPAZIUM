@@ -5,30 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Spazium</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background-color: #1e1e2e; /* Dark background */
+            color: #fff;
             padding: 50px;
+            margin: 0;
         }
 
+        /* Home Icon */
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            color: #34bfa3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .home-icon:hover {
+            color: #ff6f61;
+        }
+
+        /* Header */
         .header-blog {
             text-align: center;
             margin-bottom: 50px;
+            opacity: 0; /* Hidden initially for animation */
+            animation: fadeInHeader 1s forwards; /* Animation to fade in the header */
+        }
+
+        /* Animation for header text */
+        @keyframes fadeInHeader {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header-blog h1 {
             font-size: 3em;
-            color: #34bfa3;
+            color: #ff6f61; /* Vibrant color */
             text-transform: uppercase;
+            animation: textGlow 2s ease-in-out infinite alternate;
         }
 
         .header-blog p {
             font-size: 1.2em;
-            color: #555;
+            color: #bbb;
             margin-top: 10px;
         }
 
+        /* Glow Animation for Header */
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61, 0 0 30px #ffcc00;
+            }
+            to {
+                text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ff6f61;
+            }
+        }
+
+        /* Blog Posts */
         .blog-posts {
             display: flex;
             flex-wrap: wrap;
@@ -38,7 +83,7 @@
 
         .blog-post {
             width: 300px;
-            background-color: #fff;
+            background-color: #2c2f36; /* Dark background for the post */
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
@@ -57,12 +102,13 @@
         .blog-post h3 {
             font-size: 1.5em;
             margin-top: 15px;
+            color: #fff;
         }
 
         .blog-post p {
             font-size: 1em;
             margin-top: 10px;
-            color: #666;
+            color: #bbb;
         }
 
         .read-more-button {
@@ -81,6 +127,7 @@
 
         .read-more-button:hover {
             transform: scale(1.1);
+            background-color: #ff6f61;
         }
 
         /* Animation for fade-in effect */
@@ -111,6 +158,9 @@
     </style>
 </head>
 <body>
+
+<!-- Home Icon -->
+<a href="index.html" class="home-icon"><i class="fas fa-home"></i></a>
 
 <!-- Header -->
 <header class="header-blog">

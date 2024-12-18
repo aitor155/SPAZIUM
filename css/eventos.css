@@ -1,21 +1,136 @@
-/* eventos.css */
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Style for the header */
-.header-eventos {
+body {
+    font-family: "Arial", sans-serif;
+    color: #fff;
+    background-color: #1e1e2e;
+    overflow-x: hidden;
+}
+
+/* Home Icon (Top-left corner) */
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 4rem; /* Bigger font size for the home icon */
+    color: #fff; /* White color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+    color: #ff6f61; /* Change color on hover */
+}
+
+/* Header Section */
+.header {
     background-color: #333;
     color: #fff;
-    padding: 40px 20px;
+    padding: 80px 20px 40px 20px;
     text-align: center;
 }
 
+.hero-title {
+    font-size: 3rem;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards 1.5s;
+    margin-top: 10px;
+}
+
+/* Calendar Container */
 .calendar-container {
     margin: 20px auto;
     padding: 20px;
     width: 90%;
-    max-width: 1200px;
+    max-width: 1200px; /* Wider calendar */
 }
 
 #calendar {
     width: 100%;
-    height: 600px;
+    height: 600px; /* Bigger height for the calendar */
+}
+
+/* FullCalendar event styling */
+.fc-event {
+    font-size: 0.9rem; /* Smaller event text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fc-event:hover {
+    transform: scale(1.1); /* Pop-up effect on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Light pop effect */
+}
+
+/* Pop-up light effect for events */
+.fc-event.fc-day-grid-event {
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fc-event.fc-day-grid-event:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+/* Footer Section */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #111;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61, 0 0 30px #ffcc00;
+    }
+    to {
+        text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ff6f61;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .header {
+        padding: 60px 20px 30px 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .calendar-container {
+        width: 100%;
+    }
+
+    #calendar {
+        height: 400px;
+    }
 }

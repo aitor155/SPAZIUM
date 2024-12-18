@@ -1,62 +1,165 @@
-/* actividades.css */
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Activities Section */
-.activities-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 50px 20px;
-    width: 100%;
-    background: #2e2e3e;
+body {
+    font-family: "Arial", sans-serif;
     color: #fff;
+    text-align: center;
+    background-color: #1e1e2e;
+    overflow-x: hidden;
+}
+
+.hero-title {
+    font-size: 4rem;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards 1.5s;
+    margin-top: 10px;
+}
+
+header {
+    padding: 80px 20px 40px 20px;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #111;
     text-align: center;
 }
 
-.activity-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    width: 300px;
-    height: 400px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+/* Home Icon (Big Icon) */
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3rem;
     color: #fff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    cursor: pointer;
-    margin: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.activity-card:hover {
-    transform: translateY(-20px) scale(1.05);
+.home-icon:hover {
+    color: #ff6f61; /* Change color on hover */
+}
+
+/* Activities Section */
+.activities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 50px 20px;
+}
+
+.activity-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.activity-item:hover {
+    transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 .activity-image {
+    width: 45%;
+    height: 200px;
+    margin-right: 20px;
+}
+
+.activity-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: transform 0.3s ease;
 }
 
-.activity-card h2,
-.activity-card p {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    z-index: 10;
+.activity-text {
+    flex: 1;
+    text-align: left;
+    color: #fff;
+}
+
+.activity-text h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ff6f61;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    animation: slideIn 0.6s forwards;
 }
 
-.activity-card:hover h2,
-.activity-card:hover p {
-    opacity: 1;
-}
-
-.activity-card:hover .activity-image {
-    transform: scale(1.1);
+.activity-text p {
+    font-size: 1rem;
     opacity: 0.8;
 }
+
+/* Hover Image Effects */
+.activity-item:hover .activity-image img {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 10px #ff6f61, 0 0 20px #ff6f61, 0 0 30px #ffcc00;
+    }
+    to {
+        text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00, 0 0 40px #ff6f61;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .activity-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .activity-image {
+        width: 80%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
+
+
