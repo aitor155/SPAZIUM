@@ -105,34 +105,58 @@ canvas {
 .card {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    width: 300px;
-    height: 400px;
+    width: 350px;  /* Card width */
+    height: 450px; /* Card height */
     border-radius: 15px;
     backdrop-filter: blur(10px);
     color: #fff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
+/* Card Text */
+.card-text {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1; /* Ensure text stays above the image */
+}
+
+/* Card Image Wrapper */
+.card-image-wrapper {
+    width: 100%;
+    height: 60%;  /* You can adjust this value to control the height of the image container */
+    display: flex;
+    justify-content: center;  /* Center the image horizontally */
+    align-items: center;  /* Center the image vertically */
+    z-index: -1;
+}
+
+/* Card Image */
+.card-image {
+    width: 90%;  /* Keep the image width at 90% for its default size */
+    height: auto;  /* Maintain aspect ratio */
+    object-fit: cover;  /* Ensure the image covers the area without stretching */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Hover Effects for the Card */
 .card:hover {
     transform: translateY(-20px) scale(1.05);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     filter: brightness(1.3);
 }
 
-/* Card Images */
-.card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
+/* Hover Image Effects */
 .card:hover .card-image {
-    transform: scale(1.1);
-    opacity: 0.8;
+    transform: scale(1.2); /* Increase the scaling factor to make the image bigger */
+    opacity: 0.8;  /* Optionally, reduce opacity for visual effect */
 }
 
 /* Hover Text Animations */
@@ -217,5 +241,6 @@ canvas {
         transform: translateY(0);
     }
 }
+
 
 
