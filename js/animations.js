@@ -17,7 +17,7 @@ const textureLoader = new THREE.TextureLoader();
 const texturePaths = [
     'images/bowling.png',   // Bowling
     'images/darts.png',     // Darts
-    'images/arcade.png',    // Arcade
+    'images/morti.png',    // Arcade
     'images/food.png',      // Food
     'images/music.png'      // Music
 ];
