@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas - Spazium</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -69,13 +71,14 @@
         .reservation-card {
             width: 300px;
             margin: 20px;
-            padding: 20px;
+            padding: 30px;
             background-color: #2c2f36;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            transition: transform 0.5s ease, opacity 1s ease;
-            opacity: 0;
             text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeIn 1s forwards, slideUp 0.5s forwards;
         }
 
         .reservation-card img {
@@ -88,15 +91,16 @@
         .reservation-card h3 {
             font-size: 1.5em;
             margin-top: 15px;
+            color: #fff;
         }
 
         .reservation-card p {
             margin: 10px 0;
             font-size: 1.1em;
+            color: #bbb;
         }
 
         .book-button {
-            display: block;
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #34bfa3;
@@ -106,7 +110,8 @@
             cursor: pointer;
             text-align: center;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .book-button:hover {
@@ -126,11 +131,18 @@
             }
         }
 
-        .animated-card {
-            animation: fadeIn 1s forwards;
+        /* Animation for sliding up effect */
+        @keyframes slideUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        /* Popup form */
         .popup-form {
             display: none;
             position: absolute;
@@ -163,26 +175,39 @@
             border-radius: 5px;
         }
 
+        .popup-form .form-group input[type="submit"],
+        .popup-form .form-group .cancel-btn {
+            width: 100%; /* Make buttons take full width */
+            padding: 15px 0; /* Increase padding for larger buttons */
+            font-size: 1.2em; /* Increase font size */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Accept Booking Button (Submit) */
         .popup-form .form-group input[type="submit"] {
             background-color: #34bfa3;
             color: #fff;
-            cursor: pointer;
+            border: none;
         }
 
         .popup-form .form-group input[type="submit"]:hover {
             background-color: #2a9e7e;
         }
 
+        /* Cancel Button */
         .popup-form .form-group .cancel-btn {
             background-color: #ff6f61;
-            cursor: pointer;
+            color: #fff;
+            border: none;
+            margin-top: 10px; /* Add some space between the two buttons */
         }
 
         .popup-form .form-group .cancel-btn:hover {
             background-color: #e74c3c;
         }
 
-        /* Reservation Success Message */
         .success-message {
             text-align: center;
             color: #fff;
@@ -207,7 +232,9 @@
 <body>
 
 <!-- Home Icon -->
-<a href="index.html" class="home-icon">🏠</a>
+<a href="index.html" class="home-icon">
+    <i class="fas fa-home"></i>
+</a>
 
 <!-- Header -->
 <header class="header-reservas">
@@ -218,13 +245,13 @@
 <!-- Main Content -->
 <div class="reservas-container">
     <div class="reservation-card animated-card">
-        <img src="images/bolos.jpg" alt="Reservar Bolos">
+        <img src="images/bowling.png" alt="Reservar Bolos">
         <h3>Reserva de Partidas de Bolos</h3>
         <p>Reserva tu pista de bolos con anticipación y disfruta de un rato de diversión en Spazium.</p>
         <button class="book-button" onclick="openPopup(event, 'bolos')">Reservar Ahora</button>
     </div>
     <div class="reservation-card animated-card">
-        <img src="images/food-trucks.jpg" alt="Reservar Mesa Food Trucks">
+        <img src="images/food.png" alt="Reservar Mesa Food Trucks">
         <h3>Reserva de Mesa en Food Trucks</h3>
         <p>Asegura tu lugar para disfrutar de nuestra variedad gastronómica. ¡Haz tu reserva ya!</p>
         <button class="book-button" onclick="openPopup(event, 'foodtrucks')">Reservar Ahora</button>
@@ -313,3 +340,5 @@
 
 </body>
 </html>
+
+
