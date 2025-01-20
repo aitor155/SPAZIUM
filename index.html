@@ -5,22 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spazium - Actividades Increíbles</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Language buttons style */
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .language-button {
+            background-color: #34bfa3;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .language-button:hover {
+            background-color: #ff6f61;
+        }
+    </style>
 </head>
 <body>
+
+<!-- Language Buttons -->
+<div class="language-buttons">
+    <button class="language-button" onclick="changeLanguage('es')">Español</button>
+    <button class="language-button" onclick="changeLanguage('eu')">Euskara</button>
+    <button class="language-button" onclick="changeLanguage('fr')">Français</button>
+    <button class="language-button" onclick="changeLanguage('en')">English</button>
+</div>
 
 <canvas id="bg"></canvas>
 
 <!-- Title, Slogan, and Navigation Buttons -->
 <div class="header">
-    <h1 class="hero-title">Spazium</h1>
-    <p class="hero-subtitle">¡Donde el ocio beneficia a todos!</p>
+    <h1 class="hero-title" id="hero-title">Spazium</h1>
+    <p class="hero-subtitle" id="hero-subtitle">¡Donde el ocio beneficia a todos!</p>
     <div class="nav-buttons">
         <a href="actividades.html" class="nav-button" id="actividadesBtn">Actividades</a>
-        <a href="eventos.html" class="nav-button">Eventos</a>
-        <a href="productos-locales.html" class="nav-button">Gastronomía</a>
-        <a href="reservas.html" class="nav-button">Reservas</a>
-        <a href="blog.html" class="nav-button">Blog</a>
-        <a href="contacto.html" class="nav-button">Contacto</a>
+        <a href="eventos.html" class="nav-button" id="eventosBtn">Eventos</a>
+        <a href="productos-locales.html" class="nav-button" id="productosBtn">Gastronomía</a>
+        <a href="reservas.html" class="nav-button" id="reservasBtn">Reservas</a>
+        <a href="blog.html" class="nav-button" id="blogBtn">Blog</a>
+        <a href="contacto.html" class="nav-button" id="contactoBtn">Contacto</a>
     </div>
 </div>
 
@@ -28,8 +59,8 @@
 <div class="cards-container">
     <div class="card" id="card-bowling" data-tilt>
         <div class="card-text">
-            <h2>ACTIVIDADES</h2>
-            <p>¡Disfruta de todo tipo de actividades como bowling, dardos, arcades, proyeccion de eventos .. !</p>
+            <h2 id="card-title-1">ACTIVIDADES</h2>
+            <p id="card-desc-1">¡Disfruta de todo tipo de actividades como bowling, dardos, arcades, proyeccion de eventos .. !</p>
         </div>
         <div class="card-image-wrapper">
             <img src="images/bowling.png" alt="Bowling" class="card-image">
@@ -38,8 +69,8 @@
 
     <div class="card" id="card-foodtrucks" data-tilt>
         <div class="card-text">
-            <h2>FOOD TRUCKS</h2>
-            <p>Prueba comida deliciosa con nuestros productos locales.</p>
+            <h2 id="card-title-2">FOOD TRUCKS</h2>
+            <p id="card-desc-2">Prueba comida deliciosa con nuestros productos locales.</p>
         </div>
         <div class="card-image-wrapper">
             <img src="images/food.png" alt="Food Trucks" class="card-image">
@@ -48,8 +79,8 @@
 
     <div class="card" id="card-actividad" data-tilt>
         <div class="card-text">
-            <h2>EVENTOS</h2>
-            <p>Ten la oportunidad de descrubrir talentos ocultos de la zona.</p>
+            <h2 id="card-title-3">EVENTOS</h2>
+            <p id="card-desc-3">Ten la oportunidad de descubrir talentos ocultos de la zona.</p>
         </div>
         <div class="card-image-wrapper">
             <img src="images/music.png" alt="Área de Actividades" class="card-image">
@@ -63,13 +94,108 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 <script src="js/animations.js"></script>
 
+<script>
+// Translation data for different languages
+const translations = {
+    en: {
+        "hero-title": "Spazium",
+        "hero-subtitle": "Where leisure benefits everyone!",
+        "actividadesBtn": "Activities",
+        "eventosBtn": "Events",
+        "productosBtn": "Gastronomy",
+        "reservasBtn": "Reservations",
+        "blogBtn": "Blog",
+        "contactoBtn": "Contact",
+        "card-title-1": "ACTIVITIES",
+        "card-desc-1": "Enjoy all kinds of activities like bowling, darts, arcades, event screenings...",
+        "card-title-2": "FOOD TRUCKS",
+        "card-desc-2": "Try delicious food with our local products.",
+        "card-title-3": "EVENTS",
+        "card-desc-3": "Discover hidden local talents."
+    },
+    es: {
+        "hero-title": "Spazium",
+        "hero-subtitle": "¡Donde el ocio beneficia a todos!",
+        "actividadesBtn": "Actividades",
+        "eventosBtn": "Eventos",
+        "productosBtn": "Gastronomía",
+        "reservasBtn": "Reservas",
+        "blogBtn": "Blog",
+        "contactoBtn": "Contacto",
+        "card-title-1": "ACTIVIDADES",
+        "card-desc-1": "¡Disfruta de todo tipo de actividades como bowling, dardos, arcades, proyeccion de eventos .. !",
+        "card-title-2": "FOOD TRUCKS",
+        "card-desc-2": "Prueba comida deliciosa con nuestros productos locales.",
+        "card-title-3": "EVENTOS",
+        "card-desc-3": "Ten la oportunidad de descubrir talentos ocultos de la zona."
+    },
+    fr: {
+        "hero-title": "Spazium",
+        "hero-subtitle": "Là où les loisirs profitent à tous!",
+        "actividadesBtn": "Activités",
+        "eventosBtn": "Événements",
+        "productosBtn": "Gastronomie",
+        "reservasBtn": "Réservations",
+        "blogBtn": "Blog",
+        "contactoBtn": "Contact",
+        "card-title-1": "ACTIVITÉS",
+        "card-desc-1": "Profitez de toutes sortes d'activités comme le bowling, les fléchettes, les arcades, les projections d'événements...",
+        "card-title-2": "FOOD TRUCKS",
+        "card-desc-2": "Goûtez de délicieux plats avec nos produits locaux.",
+        "card-title-3": "ÉVÉNEMENTS",
+        "card-desc-3": "Découvrez des talents cachés de la région."
+    },
+    eu: {
+        "hero-title": "Spazium",
+        "hero-subtitle": "Auzoak onuratzen dituen aisialdia!",
+        "actividadesBtn": "Jarduerak",
+        "eventosBtn": "Ekintzak",
+        "productosBtn": "Gastronomia",
+        "reservasBtn": "Erreserbak",
+        "blogBtn": "Bloga",
+        "contactoBtn": "Harremanetan",
+        "card-title-1": "JARDUERAK",
+        "card-desc-1": "Anitzetako jarduerak gozatu, bowlinga, dartak, arkadak, eta ekintzak proiektatzen ...!",
+        "card-title-2": "FOOD TRUCKS",
+        "card-desc-2": "Probatu gure produktuekin plater goxoak.",
+        "card-title-3": "EKINTZAK",
+        "card-desc-3": "Auzoetako talentuak deskubritzeko aukera izan."
+    }
+};
+
+// Function to change language and save it to localStorage
+function changeLanguage(language) {
+    const langData = translations[language];
+
+    // Change text content for various elements
+    Object.keys(langData).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = langData[id];
+        }
+    });
+
+    // Save selected language to localStorage
+    localStorage.setItem('selectedLanguage', language);
+}
+
+// Function to apply saved language on page load
+function applySavedLanguage() {
+    const savedLanguage = localStorage.getItem('selectedLanguage');
+    if (savedLanguage) {
+        changeLanguage(savedLanguage);
+    } else {
+        // Default to Spanish (or another language)
+        changeLanguage('es');
+    }
+}
+
+// Apply saved language when the page loads
+window.onload = applySavedLanguage;
+</script>
+
 </body>
 </html>
-
-
-
-
-
 
 
 

@@ -7,6 +7,29 @@
     <link rel="stylesheet" href="css/actividades.css">
     <!-- Link to FontAwesome for Home Icon -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Language buttons style (for switching languages on this page) */
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .language-button {
+            background-color: #34bfa3;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .language-button:hover {
+            background-color: #ff6f61;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,8 +40,8 @@
 
 <!-- Header Section -->
 <header class="header">
-    <h1 class="hero-title">Actividades</h1>
-    <p class="hero-subtitle">Explora nuestras actividades y disfruta de experiencias únicas.</p>
+    <h1 class="hero-title" id="hero-title">Actividades</h1>
+    <p class="hero-subtitle" id="hero-subtitle">Explora nuestras actividades y disfruta de experiencias únicas.</p>
 </header>
 
 <!-- Activities Section -->
@@ -28,8 +51,8 @@
             <img src="images/bolera.jpg" alt="Bowling">
         </div>
         <div class="activity-text">
-            <h2>🎳 Bowling</h2>
-            <p>Diviértete jugando al bowling con tus amigos en nuestras pistas modernas.</p>
+            <h2 id="activity-title-1">🎳 Bowling</h2>
+            <p id="activity-desc-1">Diviértete jugando al bowling con tus amigos en nuestras pistas modernas.</p>
         </div>
     </div>
 
@@ -38,8 +61,8 @@
             <img src="images/dardos.jpg" alt="Darts">
         </div>
         <div class="activity-text">
-            <h2>🎯 Dardos</h2>
-            <p>Reta a tus amigos en una partida de dardos en nuestra zona de juegos.</p>
+            <h2 id="activity-title-2">🎯 Dardos</h2>
+            <p id="activity-desc-2">Reta a tus amigos en una partida de dardos en nuestra zona de juegos.</p>
         </div>
     </div>
 
@@ -48,8 +71,8 @@
             <img src="images/arcade.jpg" alt="Arcade">
         </div>
         <div class="activity-text">
-            <h2>🎮 Arcade</h2>
-            <p>Juega a tus juegos retro favoritos en nuestras máquinas arcade clásicas.</p>
+            <h2 id="activity-title-3">🎮 Arcade</h2>
+            <p id="activity-desc-3">Juega a tus juegos retro favoritos en nuestras máquinas arcade clásicas.</p>
         </div>
     </div>
 
@@ -58,8 +81,8 @@
             <img src="images/eventos.jpg" alt="Eventos">
         </div>
         <div class="activity-text">
-            <h2>🎬 Eventos</h2>
-            <p>No te pierdas nuestros eventos especiales y proyecciones exclusivas.</p>
+            <h2 id="activity-title-4">🎬 Eventos</h2>
+            <p id="activity-desc-4">No te pierdas nuestros eventos especiales y proyecciones exclusivas.</p>
         </div>
     </div>
 
@@ -69,12 +92,89 @@
             <img src="images/balloon_burst.png" alt="Inflar Globos con Pistolas de Agua">
         </div>
         <div class="activity-text">
-            <h2>💦 Inflar Globos con Pistolas de Agua</h2>
-            <p>¡Diviértete inflando globos con pistolas de agua y compite con tus amigos para ver quién puede inflar más rápido!</p>
+            <h2 id="activity-title-5">💦 Inflar Globos con Pistolas de Agua</h2>
+            <p id="activity-desc-5">¡Diviértete inflando globos con pistolas de agua y compite con tus amigos para ver quién puede inflar más rápido!</p>
         </div>
     </div>
 </section>
 
+<!-- Scripts -->
+<script>
+// Translation data for different languages
+const translations = {
+    en: {
+        "hero-title": "Activities",
+        "hero-subtitle": "Explore our activities and enjoy unique experiences.",
+        "activity-title-1": "🎳 Bowling",
+        "activity-desc-1": "Have fun playing bowling with your friends on our modern lanes.",
+        "activity-title-2": "🎯 Darts",
+        "activity-desc-2": "Challenge your friends to a darts game in our play area.",
+        "activity-title-3": "🎮 Arcade",
+        "activity-desc-3": "Play your favorite retro games on our classic arcade machines.",
+        "activity-title-4": "🎬 Events",
+        "activity-desc-4": "Don't miss our special events and exclusive screenings.",
+        "activity-title-5": "💦 Inflating Balloons with Water Guns",
+        "activity-desc-5": "Have fun inflating balloons with water guns and compete with your friends to see who can inflate the most quickly!"
+    },
+    es: {
+        "hero-title": "Actividades",
+        "hero-subtitle": "Explora nuestras actividades y disfruta de experiencias únicas.",
+        "activity-title-1": "🎳 Bowling",
+        "activity-desc-1": "Diviértete jugando al bowling con tus amigos en nuestras pistas modernas.",
+        "activity-title-2": "🎯 Dardos",
+        "activity-desc-2": "Reta a tus amigos en una partida de dardos en nuestra zona de juegos.",
+        "activity-title-3": "🎮 Arcade",
+        "activity-desc-3": "Juega a tus juegos retro favoritos en nuestras máquinas arcade clásicas.",
+        "activity-title-4": "🎬 Eventos",
+        "activity-desc-4": "No te pierdas nuestros eventos especiales y proyecciones exclusivas.",
+        "activity-title-5": "💦 Inflar Globos con Pistolas de Agua",
+        "activity-desc-5": "¡Diviértete inflando globos con pistolas de agua y compite con tus amigos para ver quién puede inflar más rápido!"
+    },
+    fr: {
+        "hero-title": "Activités",
+        "hero-subtitle": "Explorez nos activités et profitez d'expériences uniques.",
+        "activity-title-1": "🎳 Bowling",
+        "activity-desc-1": "Amusez-vous à jouer au bowling avec vos amis sur nos pistes modernes.",
+        "activity-title-2": "🎯 Fléchettes",
+        "activity-desc-2": "Defiez vos amis à une partie de fléchettes dans notre espace de jeux.",
+        "activity-title-3": "🎮 Arcade",
+        "activity-desc-3": "Jouez à vos jeux rétro préférés sur nos machines d'arcade classiques.",
+        "activity-title-4": "🎬 Événements",
+        "activity-desc-4": "Ne manquez pas nos événements spéciaux et projections exclusives.",
+        "activity-title-5": "💦 Gonflage de Ballons avec des Pistolets à Eau",
+        "activity-desc-5": "Amusez-vous à gonfler des ballons avec des pistolets à eau et défiez vos amis pour voir qui peut gonfler le plus rapidement!"
+    },
+    eu: {
+        "hero-title": "Jarduerak",
+        "hero-subtitle": "Ezagutu gure jarduerak eta bizi esperientzia bereziak.",
+        "activity-title-1": "🎳 Bowling",
+        "activity-desc-1": "Bizi dibertigarria bowlingean zure lagunekin gure pista modernotan.",
+        "activity-title-2": "🎯 Dardoak",
+        "activity-desc-2": "Erronka ezazu zure lagunak dardoen joko batean gure jolas eremuan.",
+        "activity-title-3": "🎮 Arcade",
+        "activity-desc-3": "Jolastu zure joko retro gogokoenekin gure arcade makinatan.",
+        "activity-title-4": "🎬 Ekintzak",
+        "activity-desc-4": "Ez galdu gure ekintza bereziak eta proiekzio esklusiboak.",
+        "activity-title-5": "💦 Ur Pistolak eta Hegazkinen Inflazioa",
+        "activity-desc-5": "Dibertitu egon zaitez ur pistolak erabiliz baloia puzgarri eta erronka ezazu zure lagunekin nork puztu dezakeen lehenbizi!"
+    }
+};
+
+// Function to change language and save it to localStorage
+function changeLanguage(language) {
+    const langData = translations[language];
+    for (const key in langData) {
+        document.getElementById(key).textContent = langData[key];
+    }
+    localStorage.setItem("selectedLanguage", language);
+}
+
+// Check for saved language preference and apply it
+document.addEventListener("DOMContentLoaded", () => {
+    const savedLanguage = localStorage.getItem("selectedLanguage") || "es"; // Default to Spanish
+    changeLanguage(savedLanguage);
+});
+</script>
 </body>
 </html>
 
